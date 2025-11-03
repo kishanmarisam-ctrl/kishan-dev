@@ -126,6 +126,8 @@ a {
     border-radius: 5px;
     font-size: 1rem;
     font-weight: bold;
+    /* Added min-height for better touch target */
+    min-height: 44px;
     transition: background-color 0.3s ease;
 }
 
@@ -146,7 +148,6 @@ a {
     grid-template-columns: repeat(3, 1fr); /* 3 columns */
     gap: 30px;
     margin-top: 50px;
-    text-align: left;
 }
 
 .about-card {
@@ -155,13 +156,14 @@ a {
     border: 1px solid #eee;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    text-align: center; /* Centered content */
 }
 
 .about-card i {
     font-size: 2.5rem; /* Icon size */
     color: var(--primary-color);
     margin-bottom: 20px;
-    display: block; /* Makes it take its own line */
+    display: block;
 }
 
 .about-card h3 {
@@ -184,7 +186,7 @@ a {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     text-align: left;
-    overflow: hidden; /* Hides parts of image that overflow */
+    overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -196,7 +198,7 @@ a {
 .project-card img {
     width: 100%;
     height: 200px;
-    object-fit: cover; /* Ensures image covers the area */
+    object-fit: cover;
 }
 
 .project-card h3 {
@@ -222,7 +224,7 @@ a {
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* 3 columns */
     gap: 30px;
-    text-align: center;
+    text-align: left;
     margin-top: 50px;
 }
 
@@ -231,15 +233,12 @@ a {
     margin-bottom: 20px;
     border-bottom: 2px solid #ddd;
     padding-bottom: 10px;
-    transform: translatex(50%); /* Centering the category titles */
 }
 
 .skills-list {
     display: flex;
     flex-wrap: wrap; /* Allows pills to wrap to next line */
     gap: 12px;
-    transform: translatex(50%); /* Centering the pills */
-    align-items: center;
 }
 
 .skill-pill {
@@ -275,6 +274,8 @@ a {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 1rem;
+    /* Added min-height for better touch target */
+    min-height: 44px; 
 }
 
 /* ======== FOOTER ======== */
@@ -288,6 +289,7 @@ footer {
 
 /* ======== RESPONSIVE STYLES (Mobile-First) ======== */
 @media (max-width: 768px) {
+    /* Navbar Collapse */
     .nav-menu {
         position: fixed;
         left: -100%; /* Hides the menu off-screen */
@@ -298,9 +300,9 @@ footer {
         text-align: center;
         transition: left 0.3s ease;
         box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        z-index: 999;
     }
     
-    /* This class will be toggled by JavaScript */
     .nav-menu.active {
         left: 0;
     }
@@ -314,8 +316,18 @@ footer {
         display: block;
     }
 
+    /* Font Optimization for Mobile */
     .hero-content h1 {
-        font-size: 2.2rem;
+        font-size: 2rem; /* Reduced for small screens */
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .page-section h2 {
+        font-size: 1.8rem;
+    }
+    .page-section {
+        padding: 40px 15px;
     }
 
     /* Stack new grids on mobile */
@@ -323,6 +335,12 @@ footer {
     .skills-grid {
         grid-template-columns: 1fr; /* Stack to 1 column */
         gap: 20px;
+    }
+    
+    /* Remove hover effects on touch devices */
+    .project-card:hover {
+        transform: none;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
     }
 }
 

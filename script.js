@@ -10,56 +10,69 @@ document.addEventListener("DOMContentLoaded", () => {
     // Toggle the .active class on the nav menu when hamburger is clicked
     hamburger.addEventListener("click", () => {
         navMenu.classList.toggle("active");
+        
+        // Toggle the icon between bars (menu) and 'x' (close)
+        const icon = hamburger.querySelector('i');
+        icon.classList.toggle('fa-bars');
+        icon.classList.toggle('fa-times');
     });
 
     // Close the menu when a link is clicked (good for one-page layout)
     navLinks.forEach(link => {
         link.addEventListener("click", () => {
-            navMenu.classList.remove("active");
+            if (navMenu.classList.contains("active")) {
+                navMenu.classList.remove("active");
+                // Reset icon to bars
+                const icon = hamburger.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
     });
 
     // ======== PART 2: SCROLL ANIMATIONS (Intersection Observer) ========
 
-    // This is the modern, efficient way to detect when an element is in view
-    
-    // 1. Select all the elements we want to animate
+    // Select all elements with the class 'animate-on-scroll'
     const animatedElements = document.querySelectorAll(".animate-on-scroll");
 
-    // 2. Create the observer
+    // Create the Intersection Observer instance
     const observer = new IntersectionObserver((entries) => {
-        // 'entries' is an array of all elements being observed
+        // Loop through the entries (the elements being watched)
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // If the element is on the screen, add the 'show' class
+                // If the element is visible on the screen, add the 'show' class
                 entry.target.classList.add("show");
                 
-                // We can also stop observing it once it's shown
+                // Stop observing the element so the animation only runs once
                 observer.unobserve(entry.target);
             }
         });
     }, {
-        threshold: 0.15 // Trigger when 15% of the element is visible
+        // Trigger the animation when 15% of the element is visible
+        threshold: 0.15 
     });
 
-    // 3. Tell the observer to watch each of our animated elements
+    // Tell the observer to watch each of our animated elements
     animatedElements.forEach(el => {
         observer.observe(el);
     });
 
-    // ======== PART 3: CONTACT FORM SUBMISSION (JavaScript part) ========
-    // This part works with Step 4.
+    // ======== PART 3: CONTACT FORM SUBMISSION (Web3Forms Integration) ========
     
     const form = document.getElementById("contact-form");
     const formStatus = document.getElementById("form-status");
 
     form.addEventListener("submit", async (e) => {
-        e.preventDefault(); // Stop the default form reload
+        e.preventDefault(); // Stop the default page reload
 
         const data = new FormData(form);
         
+        // Clear previous status messages
+        formStatus.innerHTML = "Sending...";
+        formStatus.style.color = "var(--primary-color)";
+        
         try {
-            // Send the form data to our Web3Forms endpoint
+            // Send the form data to the Web3Forms endpoint defined in the HTML action attribute
             const response = await fetch(form.action, {
                 method: "POST",
                 body: data,
@@ -69,18 +82,19 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             if (response.ok) {
-                // Success!
+                // Success
                 formStatus.innerHTML = "Thanks! Your message has been sent.";
                 formStatus.style.color = "green";
-                form.reset(); // Clear the form
+                form.reset(); // Clear the input fields
             } else {
-                // Error
-                formStatus.innerHTML = "Oops! There was a problem sending your message.";
+                // Handle API error response
+                const result = await response.json();
+                formStatus.innerHTML = `Oops! There was a problem: ${result.message || 'Unknown error'}`;
                 formStatus.style.color = "red";
             }
         } catch (error) {
             console.error('Form submission error:', error);
-            formStatus.innerHTML = "Oops! There was a network error.";
+            formStatus.innerHTML = "Oops! There was a network error. Please try again later.";
             formStatus.style.color = "red";
         }
     });
