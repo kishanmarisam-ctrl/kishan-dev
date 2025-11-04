@@ -1,25 +1,47 @@
 /* ======== GLOBAL STYLES & VARIABLES ======== */
 :root {
-    --primary-color: #007bff; /* A nice blue, change to your liking */
-    --secondary-color: #333;
+    --primary-color: #007bff; /* Bright Blue */
+    --secondary-color: #333; /* Dark/Text Color */
     --background-color: #ffffff;
     --text-color: #444;
     --light-gray: #f4f4f4;
+    --dark-button-bg: #1a1a1a; /* Dark background for primary CTA */
 }
 
-/* Smooth scrolling for anchor links */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 70px; /* Offset for the sticky navbar */
-}
-
+/* ======== CURSOR STYLES (DESKTOP ONLY - SIMPLIFIED) ======== */
 body {
+    cursor: default; /* Hides the default mouse cursor */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scrollbars */
+}
+
+#blob-cursor {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%); 
+    pointer-events: none; /* Allows clicks to pass through */
+    z-index: 9999;
+}
+
+#blob-cursor svg {
+    display: block;
+    width: 100px; 
+    height: 100px;
+}
+
+/* Removed: .blob-hover-active class styles */
+
+
+/* Smooth scrolling setup */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 70px; 
 }
 
 .page-section {
@@ -39,321 +61,147 @@ a {
     text-decoration: none;
 }
 
-/* ======== NAVBAR ======== */
-.navbar {
-    background-color: var(--background-color);
-    border-bottom: 1px solid var(--light-gray);
-    position: fixed; /* Makes the navbar sticky */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
+/* ======== NAVBAR & MENU (unchanged) ======== */
+.navbar { background-color: var(--background-color); border-bottom: 1px solid var(--light-gray); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+.nav-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+.nav-logo { font-size: 1.5rem; font-weight: bold; color: var(--secondary-color); }
+.nav-menu { display: flex; list-style: none; margin: 0; padding: 0; }
+.nav-item { margin-left: 25px; }
+.nav-link { color: var(--text-color); font-weight: 500; transition: color 0.3s ease; }
+.nav-link:hover { color: var(--primary-color); }
+.hamburger { display: none; font-size: 1.5rem; background: none; border: none; color: var(--secondary-color); cursor: pointer; }
 
-.nav-container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-}
-
-.nav-logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--secondary-color);
-}
-
-.nav-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-.nav-item {
-    margin-left: 25px;
-}
-
-.nav-link {
-    color: var(--text-color);
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-    color: var(--primary-color);
-}
-
-/* Hamburger button - hidden on desktop */
-.hamburger {
-    display: none;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    color: var(--secondary-color);
-    cursor: pointer;
-}
-
-/* ======== HERO SECTION ======== */
+/* ======== HERO SECTION & NEW CTA GROUP ======== */
 .hero-section {
-    height: 90vh; /* Takes up most of the viewport height */
+    height: 90vh; 
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 0 20px;
-    background-color: var(--light-gray); /* Light bg for hero */
+    background-color: var(--light-gray); 
 }
 
-.hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
+.hero-content h1 { font-size: 3rem; margin-bottom: 10px; }
+.hero-content p { font-size: 1.2rem; margin-bottom: 30px; }
 
-.hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
+/* Button Group Styling */
+.hero-cta-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Space between the two buttons */
+    margin-bottom: 40px;
 }
 
 .cta-button {
-    background-color: var(--primary-color);
-    color: white;
     padding: 12px 25px;
-    border-radius: 5px;
+    border-radius: 8px; /* Slightly more rounded */
     font-size: 1rem;
     font-weight: bold;
-    /* Added min-height for better touch target */
     min-height: 44px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    display: inline-flex; /* Ensures proper button layout */
+    align-items: center;
 }
 
-.cta-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+/* Primary Button (View My Work) */
+.primary-btn {
+    background-color: var(--dark-button-bg);
+    color: white;
+    border: 2px solid var(--dark-button-bg);
+}
+.primary-btn:hover {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: rgb(0, 0, 0);
 }
 
-/* ======== ABOUT SECTION (NEW) ======== */
-.section-subtitle {
-    font-size: 1.1rem;
-    color: #666;
-    max-width: 600px;
-    margin: 0 auto 40px;
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 30px;
-    margin-top: 50px;
-}
-
-.about-card {
-    background-color: white;
-    padding: 30px;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-    text-align: center; /* Centered content */
-}
-
-.about-card i {
-    font-size: 2.5rem; /* Icon size */
-    color: var(--primary-color);
-    margin-bottom: 20px;
-    display: block;
-}
-
-.about-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
-}
-
-/* ======== PROJECTS SECTION ======== */
-.project-grid {
-    display: grid;
-    /* This is responsive! 1 column on small, 2 on medium, 3 on large */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.project-card {
+/* Secondary Button (Contact Me) */
+.secondary-btn {
     background-color: var(--background-color);
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    text-align: left;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: var(--dark-button-bg);
+    border: 2px solid #ccc;
+}
+.secondary-btn:hover {
+    color: white;
+    background-color: #000000;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-}
-
-.project-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.project-card h3 {
-    padding: 20px 20px 0;
-}
-
-.project-card p {
-    padding: 0 20px;
-}
-
-.project-card a {
-    display: inline-block;
-    padding: 0 20px 20px;
-    font-weight: bold;
-}
-
-/* ======== SKILLS SECTION (NEW) ======== */
-#skills {
-    background-color: var(--light-gray); /* Light bg to separate it */
-}
-
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns */
-    gap: 30px;
-    text-align: left;
-    margin-top: 50px;
-}
-
-.skill-category h3 {
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
-}
-
-.skills-list {
+/* Social Icon Styling */
+.hero-social-links {
     display: flex;
-    flex-wrap: wrap; /* Allows pills to wrap to next line */
-    gap: 12px;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
 }
 
-.skill-pill {
-    background-color: #e9ecef; /* Light gray background */
-    color: #495057;
-    padding: 8px 16px;
-    border-radius: 20px; /* Makes it a "pill" shape */
-    font-size: 0.9rem;
-    font-weight: 500;
+.social-icon {
+    font-size: 1.8rem;
+    color: var(--text-color); /* Dark gray icons */
+    transition: color 0.3s ease;
 }
 
-/* ======== CONTACT FORM ======== */
-#contact-form {
-    max-width: 600px;
-    margin: 40px auto;
-    text-align: left;
+.social-icon:hover {
+    color: var(--primary-color);
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
 
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+/* ======== ALL OTHER SECTIONS (unchanged) ======== */
+.section-subtitle { font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto 40px; }
+.about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+.about-card { background-color: white; padding: 30px; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; }
+.about-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; display: block; }
+.about-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+#skills { background-color: var(--light-gray); }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: left; margin-top: 50px; }
+.skill-category h3 { font-size: 1.3rem; margin-bottom: 20px; border-bottom: 2px solid #ddd; padding-bottom: 10px; }
+.skills-list { display: flex; flex-wrap: wrap; gap: 12px; }
+.skill-pill { background-color: #e9ecef; color: #495057; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
+.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+.project-card { background-color: var(--background-color); border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: left; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.project-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+.project-card img { width: 100%; height: 200px; object-fit: cover; }
+.project-card h3 { padding: 20px 20px 0; }
+.project-card p { padding: 0 20px; }
+.project-card a { display: inline-block; padding: 0 20px 20px; font-weight: bold; }
+#contact-form { max-width: 600px; margin: 40px auto; text-align: left; }
+.form-group { margin-bottom: 20px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
+.form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; min-height: 44px; }
+footer { text-align: center; padding: 20px; background-color: var(--secondary-color); color: var(--light-gray); margin-top: 40px; }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    /* Added min-height for better touch target */
-    min-height: 44px; 
-}
-
-/* ======== FOOTER ======== */
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: var(--secondary-color);
-    color: var(--light-gray);
-    margin-top: 40px;
-}
-
-/* ======== RESPONSIVE STYLES (Mobile-First) ======== */
+/* ======== RESPONSIVE STYLES (MOBILE OPTIMIZATION) ======== */
 @media (max-width: 768px) {
-    /* Navbar Collapse */
-    .nav-menu {
-        position: fixed;
-        left: -100%; /* Hides the menu off-screen */
-        top: 70px; /* Below the navbar */
+    /* HIDE BLOB CURSOR ON MOBILE */
+    #blob-cursor { display: none; }
+    body { cursor: default; }
+
+    /* Stack CTA buttons on small screens */
+    .hero-cta-group {
         flex-direction: column;
-        background-color: var(--background-color);
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    .cta-button {
         width: 100%;
-        text-align: center;
-        transition: left 0.3s ease;
-        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-        z-index: 999;
-    }
-    
-    .nav-menu.active {
-        left: 0;
+        max-width: 300px; /* Limit stack width */
     }
 
-    .nav-item {
-        margin: 15px 0;
-    }
+    /* Other Mobile Optimizations */
+    .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background-color: var(--background-color); width: 100%; text-align: center; transition: left 0.3s ease; box-shadow: 0 5px 10px rgba(0,0,0,0.1); z-index: 999; }
+    .nav-menu.active { left: 0; }
+    .nav-item { margin: 15px 0; }
+    .hamburger { display: block; }
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content p { font-size: 1rem; }
+    .page-section h2 { font-size: 1.8rem; }
+    .page-section { padding: 40px 15px; }
+    .about-grid, .skills-grid { grid-template-columns: 1fr; gap: 20px; }
+    .project-card:hover { transform: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
 
-    /* Show the hamburger button */
-    .hamburger {
-        display: block;
-    }
-
-    /* Font Optimization for Mobile */
-    .hero-content h1 {
-        font-size: 2rem; /* Reduced for small screens */
-    }
-    .hero-content p {
-        font-size: 1rem;
-    }
-    .page-section h2 {
-        font-size: 1.8rem;
-    }
-    .page-section {
-        padding: 40px 15px;
-    }
-
-    /* Stack new grids on mobile */
-    .about-grid,
-    .skills-grid {
-        grid-template-columns: 1fr; /* Stack to 1 column */
-        gap: 20px;
-    }
-    
-    /* Remove hover effects on touch devices */
-    .project-card:hover {
-        transform: none;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
-    }
-}
-
-/* ======== SCROLL ANIMATION STYLES ======== */
-/* By default, elements to be animated are hidden */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px); /* Start 30px down */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-/* This class will be added by JavaScript when the element is in view */
-.animate-on-scroll.show {
-    opacity: 1;
-    transform: translateY(0);
+    /* Scroll Animations */
+    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+    .animate-on-scroll.show { opacity: 1; transform: translateY(0); }
 }

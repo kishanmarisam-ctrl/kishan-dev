@@ -3,26 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kishan - Portfolio</title>
+    <title>vamsi kishan - Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    
 
     <header>
         <nav class="navbar">
             <div class="nav-container">
-                <a href="#home" class="nav-logo">VK</a>
+                <a href="#home" class="nav-logo interactive-hover">VK</a>
                 
                 <ul class="nav-menu">
-                    <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
-                    <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
-                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="#home" class="nav-link interactive-hover">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link interactive-hover">About</a></li>
+                    <li class="nav-item"><a href="#skills" class="nav-link interactive-hover">Skills</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link interactive-hover">Projects</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link interactive-hover">Contact</a></li>
                 </ul>
 
-                <button class="hamburger" aria-label="Open menu">
+                <button class="hamburger interactive-hover" aria-label="Open menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -34,33 +35,77 @@
             <div class="hero-content animate-on-scroll">
                 <h1>Hello, I'm vamsi kishan</h1>
                 <p>A Frontend Developer passionate about building beautiful web experiences.</p>
-                <a href="#projects" class="cta-button">View My Work</a>
-                <a href="#contact" class="cta-button secondary">Get in Touch</a>
-            </div>
+                
+                <div class="hero-cta-group">
+                    <a href="#projects" class="cta-button primary-btn interactive-hover">View My Work</a>
+                    <a href="#contact" class="cta-button secondary-btn interactive-hover">Contact Me</a>
+                </div>
+                
+                <div class="hero-social-links">
+                    <a href="https://github.com/kishanmarisam-ctrl" target="_blank" class="social-icon interactive-hover" aria-label="GitHub">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/vamsi-kishan-ba278b352" target="_blank" class="social-icon interactive-hover" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:kishanmarisam@gmail.com" class="social-icon interactive-hover" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                </div>
         </section>
 
         <section id="about" class="page-section animate-on-scroll">
-    <h2>About Me</h2>
-    <p class="section-subtitle">
-        I'm a fresher frontend developer experience building responsive web applications from mini projects I specialize in javascript, and modern CSS frameworks.
-    </p>
+            <h2>About Me</h2>
+            <p class="section-subtitle">
+                I'm a frontend developer with 1+ years of experience building responsive web applications. I specialize in css, javascript, and modern CSS frameworks.
+            </p>
 
-    <div class="about-grid">
-        <div class="about-card">
-            <i class="fas fa-code"></i> <h3>Clean Code</h3>
-            <p>Writing maintainable, scalable, and well-documented code.</p>
-        </div>
-        <div class="about-card">
-            <i class="fas fa-palette"></i> <h3>Design Focus</h3>
-            <p>Creating pixel-perfect implementations from design systems.</p>
-        </div>
-        <div class="about-card">
-            <i class="fas fa-bolt"></i> <h3>Performance</h3>
-            <p>Optimizing for speed, accessibility, and user experience.</p>
-        </div>
-    </div>
-</section>
+            <div class="about-grid">
+                <div class="about-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Clean Code</h3>
+                    <p>Writing maintainable, scalable, and well-documented code.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-palette"></i>
+                    <h3>Design Focus</h3>
+                    <p>Creating pixel-perfect implementations from design systems.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>Performance</h3>
+                    <p>Optimizing for speed, accessibility, and user experience.</p>
+                </div>
+            </div>
+        </section>
 
+        <section id="skills" class="page-section animate-on-scroll">
+            <h2>Skills & Technologies</h2>
+            <p class="section-subtitle">My toolkit for building modern web applications</p>
+
+            <div class="skills-grid">
+                <div class="skill-category" >
+                    <h3 style="transform: translateX(50%);text-align: center;">Frontend</h3>
+                    <div class="skills-list" style="transform: translateX(50%);">
+                        <span class="skill-pill">JavaScript</span>
+                        <span class="skill-pill">Node.js</span>
+                        <span class="skill-pill">HTML5</span>
+                        <span class="skill-pill">CSS3</span>
+                    </div>
+                </div>                      
+                <div class="skill-category">
+                    <h3 style="transform: translateX(50%);text-align: center;">Tools & Others</h3>
+                    <div class="skills-list" style="transform: translateX(50%);">
+                        <span class="skill-pill">Git</span>
+                        <span class="skill-pill">Figma</span>
+                        <span class="skill-pill">NPM</span>
+                        <span class="skill-pill">Node.JS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <section id="projects" class="page-section animate-on-scroll">
             <h2>My Projects</h2>
             <div class="project-grid">
@@ -68,74 +113,44 @@
                     <img src="https://via.placeholder.com/300x200?text=Project+1" alt="Project 1 Screenshot">
                     <h3>Aggregator deals website</h3>
                     <p>still not live yet</p>
-                    <a href="#" target="_blank">View Project</a>
+                    <a href="#" target="_blank" class="interactive-hover">View Project</a>
                 </div>
                 <div class="project-card">
                     <img src="web picture.jpg" alt="Project 2 Screenshot">
-                    <h3>Portfolio</h3>
-                    <p>..</p>
-                    <a href="#" target="_blank">View Project</a>
+                    <h3>Project Title 2</h3>
+                    <p>an personal portfolio website.</p>
+                    <a href="#" target="_blank" class="interactive-hover">View Project</a>
                 </div>
             </div>
         </section>
-
-        <section id="skills" class="page-section animate-on-scroll">
-    <h2>Skills & Technologies</h2>
-    <p class="section-subtitle">My toolkit for building modern web applications</p>
-
-    <div class="skills-grid">
-        <div class="skill-category">
-            <h3>Languages</h3>
-            <div class="skills-list">
-                <span class="skill-pill">React</span>
-                <span class="skill-pill">TypeScript</span>
-                <span class="skill-pill">Next.js</span>
-                <span class="skill-pill">Vue.js</span>
-                <span class="skill-pill">HTML5</span>
-                <span class="skill-pill">CSS3</span>
-            </div>
-        </div>
-        <div class="skill-category">
-            <h3>Tools & Others</h3>
-            <div class="skills-list">
-                <span class="skill-pill">Git</span>
-                <span class="skill-pill">VS code</span>
-                <span class="skill-pill">NPM</span>
-                <span class="skill-pill">Node.JS</span>
-            </div>
-        </div>
-    </div>
-</section>
 
         <section id="contact" class="page-section animate-on-scroll">
             <h2>Contact Me</h2>
             <p>I'd love to hear from you!</p>
 
             <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="YOUR_UNIQUE_ACCESS_KEY_HERE">
 
-    <input type="hidden" name="access_key" value="c4668a22-736e-4370-8809-15e31d339c47">
-
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-    </div>
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-    <div class="form-group">
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-    </div>
-    <button type="submit" class="cta-button">Send Message</button>
-</form>
-<div id="form-status"></div>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="cta-button primary-btn interactive-hover">Send Message</button>
+            </form>
             <div id="form-status"></div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2025 [Your Name]. All rights reserved.</p>
+        <p>&copy; 2025 vamsi kishan. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
