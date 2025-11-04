@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     // ======== PART 1: REMOVED BLOB CURSOR ANIMATION ========
-    // The custom cursor logic is removed for reliability.
+    // (Custom cursor is fully removed for reliability.)
 
     // ======== PART 2: RESPONSIVE NAVBAR (HAMBURGER MENU) ========
     
