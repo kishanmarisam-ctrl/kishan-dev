@@ -1,35 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ======== PART 1: BLOB CURSOR ANIMATION (SIMPLE TRACKING) ========
-    
-    const blobCursor = document.getElementById('blob-cursor');
-    const body = document.body;
-
-    // Check if the screen is large enough to run the cursor animation
-    if (blobCursor && window.innerWidth > 768) {
-        
-        // --- Simple, Direct Mouse Tracking (0 Lag) ---
-        body.addEventListener('mousemove', (e) => {
-            // Set position directly for 0 lag, solving the clipping issue
-            blobCursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
-        });
-
-        // --- Hover Interaction (Simple Scale) ---
-        const interactiveElements = document.querySelectorAll('.interactive-hover');
-
-        interactiveElements.forEach(el => {
-            el.addEventListener('mouseover', () => {
-                // Apply a scale transform on hover (visually simple and effective)
-                blobCursor.style.transform += ' scale(0.6)';
-            });
-            el.addEventListener('mouseleave', () => {
-                // Reset scale on mouse leave
-                blobCursor.style.transform = `translate(${event.clientX}px, ${event.clientY}px) translate(-50%, -50%)`;
-            });
-        });
-
-    } 
-
+    // ======== PART 1: REMOVED BLOB CURSOR ANIMATION ========
+    // The custom cursor logic is removed for reliability.
 
     // ======== PART 2: RESPONSIVE NAVBAR (HAMBURGER MENU) ========
     
