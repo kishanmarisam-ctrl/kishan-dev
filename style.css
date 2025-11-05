@@ -133,12 +133,113 @@ a {
     color: var(--primary-color);
 }
 
-/* ======== ABOUT SECTION ======== */
+/* =================================== */
+/* ===== UPDATED ABOUT SECTION CSS ===== */
+/* =================================== */
 .section-subtitle { font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto 40px; }
 .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
-.about-card { background-color: white; padding: 30px; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; }
-.about-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; display: block; }
-.about-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+
+/* 1. The container that sets up the 3D perspective */
+.flip-card-container {
+    perspective: 1000px; /* This creates the 3D effect */
+    min-height: 250px; /* Give the card a fixed height */
+    cursor: pointer;
+}
+
+/* 2. Modify the original .about-card to be the rotating element */
+.about-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Remove original card styles (they move to the faces) */
+    background: none;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    /* Add 3D properties */
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d; /* Corrected from preserve-d */
+}
+
+/* 3. The "tap" (focus) or hover action that flips the card */
+.flip-card-container:hover .about-card,
+.flip-card-container:focus .about-card {
+    transform: rotateY(180deg);
+}
+
+/* 4. Style for BOTH faces (front and back) */
+.card-front,
+.card-back {
+    /* Use absolute positioning to stack them */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Hides the back of the element */
+    backface-visibility: hidden;
+
+    /* Re-apply the original .about-card styles here */
+    background-color: white;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    text-align: center;
+    
+    /* Center content vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Ensures padding doesn't break layout */
+}
+
+/* 5. Style the front face (already facing forward) */
+.card-front {
+    color: var(--secondary-color);
+}
+.card-front i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    display: block;
+}
+.card-front h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+/* 6. Style the back face (start it flipped) */
+.card-back {
+    transform: rotateY(180deg);
+    background-color: var(--light-gray); /* Optional: different bg for back */
+    color: var(--secondary-color);
+}
+.card-back h3 {
+    font-size: 1.25rem;
+}
+.card-back p {
+    font-size: 1rem;
+    margin: 0; /* Remove default paragraph margin */
+}
+
+/* 7. Hint text for the user */
+.tap-hint {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+/* Hide the tap hint on desktop (where hover works) */
+@media (min-width: 769px) {
+    .tap-hint {
+        display: none;
+    }
+}
+/* =================================== */
+/* ===== END OF UPDATED SECTION ===== */
+/* =================================== */
+
 
 /* ======== SKILLS SECTION ======== */
 #skills { background-color: var(--light-gray); }
@@ -152,7 +253,7 @@ a {
 .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
 .project-card { background-color: var(--background-color); border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: left; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .project-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
-.project-card img { width: 100%; height: 200px; object-fit: cover; }
+.project-card img { width: 100%; height: 200px; object-fit: cover;display: grid; }
 .project-card h3 { padding: 20px 20px 0; }
 .project-card p { padding: 0 20px; }
 .project-card a { display: inline-block; padding: 0 20px 20px; font-weight: bold; }
@@ -236,8 +337,6 @@ a {
 footer { text-align: center; padding: 20px; background-color: var(--secondary-color); color: var(--light-gray); margin-top: 40px; }
 
 /* ======== WORD ROTATION ANIMATION ======== */
-
-/* Text colors for each word */
 #rotating-text .word:nth-child(1) { color: #000000; }
 #rotating-text .word:nth-child(2) { color: #81c48f; }
 #rotating-text .word:nth-child(3) { color: #b8a87a; }
@@ -246,7 +345,6 @@ footer { text-align: center; padding: 20px; background-color: var(--secondary-co
 #rotating-text .word:nth-child(6) { color: #6c4e47; }
 #rotating-text .word:nth-child(7) { color: #8caac9; }
 
-/* Container for "I'm a [word]" */
 .typing-container {
     font-size: 2rem;
     margin-bottom: 9px;
@@ -254,7 +352,6 @@ footer { text-align: center; padding: 20px; background-color: var(--secondary-co
     justify-content: center;
 }
 
-/* Wrapper that creates the "window" for the sliding word */
 .rotating-words-wrapper {
     height: 1.1em; 
     overflow: hidden;
@@ -264,7 +361,6 @@ footer { text-align: center; padding: 20px; background-color: var(--secondary-co
     transform: translateY(8px);
 }
 
-/* The element that contains all words and slides up/down */
 #rotating-text {
     display: inline-block;
     animation: word-slide 10s infinite; 
@@ -276,7 +372,6 @@ footer { text-align: center; padding: 20px; background-color: var(--secondary-co
     text-align: left;
 }
 
-/* Keyframes for the 7-word slide */
 @keyframes word-slide {
     0% { transform: translateY(0); }
     10% { transform: translateY(0); } /* Word 1 */
@@ -335,6 +430,7 @@ footer { text-align: center; padding: 20px; background-color: var(--secondary-co
         grid-template-columns: 1fr; 
     }
     
+    /* MODIFIED: Update about grid for 3D cards */
     .about-grid { 
         grid-template-columns: 1fr; 
         gap: 20px; 
@@ -359,13 +455,12 @@ footer { text-align: center; padding: 20px; background-color: var(--secondary-co
     }
     
     .nav-item { 
-        margin: 0; /* Remove horizontal margin */
+        margin: 0;
     }
     
-    /* OPTIMIZED: Increased tap area for mobile menu links */
     .nav-menu .nav-link {
         display: block;
-        padding: 15px 0; /* Creates a large, easy-to-tap vertical area */
+        padding: 15px 0;
     }
     
     .hamburger { 
@@ -374,35 +469,33 @@ footer { text-align: center; padding: 20px; background-color: var(--secondary-co
 
     /* --- Font Size & Readability --- */
     .hero-content h1 { 
-        font-size: 2rem; /* Reduced from 3rem */
+        font-size: 2rem;
     }
     
-    /* OPTIMIZED: Reduced font size for rotating text container */
     .typing-container {
-        font-size: 1.5rem; /* Reduced from 2rem */
-        /* Flex-wrap ensures "I'm a" and the word can stack if needed */
+        font-size: 1.5rem;
         flex-wrap: wrap; 
     }
     
     .hero-content p { 
-        font-size: 1rem; /* Reduced from 1.2rem */
+        font-size: 1rem;
     }
     
     .page-section h2 { 
-        font-size: 1.8rem; /* Reduced from default */
+        font-size: 1.8rem;
     }
     
     .page-section { 
-        padding: 40px 15px; /* Reduced padding */
+        padding: 40px 15px;
     }
 
     /* --- Disable Hover Effects on Touch --- */
     .project-card:hover { 
         transform: none; 
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+        box-shadow: 0 4px 8px rgba(0,0,L0.1); 
     }
 
-    /* --- Scroll Animation (No change needed) --- */
+    /* --- Scroll Animation --- */
     .animate-on-scroll { 
         opacity: 0; 
         transform: translateY(30px); 
@@ -413,8 +506,3 @@ footer { text-align: center; padding: 20px; background-color: var(--secondary-co
         transform: translateY(0); 
     }
 }
-
-/* REMOVED: Deleted the conflicting/broken code that was here.
-   The old "h2", ".span", and "@keyframes typing" rules were
-   overriding the mobile styles in your @media query.
-*/
