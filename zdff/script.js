@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // ======================================================
-    // ======== PART 1: RESPONSIVE NAVBAR (HAMBURGER MENU) ========
-    // ======================================================
+    // ======== PART 1: REMOVED BLOB CURSOR ANIMATION ========
+    // (Custom cursor is fully removed for reliability.)
+
+    // ======== PART 2: RESPONSIVE NAVBAR (HAMBURGER MENU) ========
     
     const hamburger = document.querySelector(".hamburger");
     const navMenu = document.querySelector(".nav-menu");
@@ -26,149 +27,26 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // ======================================================
-    // ======== PART 2: GITHUB VIDEO ANIMATION ON HOVER ========
-    // ======================================================
-    
-    const githubLink = document.querySelector('.hero-social-links a[aria-label="GitHub"]');
-    const githubVideo = document.getElementById('github-icon-video');
+    // ======== PART 3: SCROLL ANIMATIONS (Intersection Observer) ========
 
-    if (githubLink && githubVideo) {
-        // --- Play on mouse enter (hover) ---
-        githubLink.addEventListener('mouseenter', () => {
-            githubVideo.style.opacity = 1;
-            githubVideo.currentTime = 0; // Reset video to start
-            githubVideo.play();
-        });
+    const animatedElements = document.querySelectorAll(".animate-on-scroll");
 
-        // --- Stop and hide on mouse leave (un-hover) ---
-        githubLink.addEventListener('mouseleave', () => {
-            githubVideo.style.opacity = 0;
-            githubVideo.pause();
-        });
-        
-        // --- Hide the video when it ends ---
-        githubVideo.addEventListener('ended', () => {
-             githubVideo.style.opacity = 0; 
-        });
-    }
-
-    // ======================================================
-    // ======== PART 3: SCROLL ANIMATIONS (GSAP ScrollTrigger) ========
-    // (5 distinct animations replacing Intersection Observer)
-    // ======================================================
-    
-    // 1. Register the plugin
-    gsap.registerPlugin(ScrollTrigger);
-
-
-    // --- Animation 1: Hero Section Entrance (Immediate Load Animation) ---
-    // A clean, staggered entrance on page load.
-    gsap.timeline()
-        .from(".hero-content h1", { 
-            y: 50, 
-            opacity: 0, 
-            duration: 0.8, 
-            ease: "power3.out" 
-        })
-        .from(".hero-content p", { 
-            y: 30, 
-            opacity: 0, 
-            duration: 0.6, 
-            ease: "power2.out" 
-        }, "<0.2") // Start 0.2s before the previous animation ends
-        .from(".hero-cta-group a", { 
-            scale: 0.9, 
-            opacity: 0, 
-            duration: 0.6, 
-            stagger: 0.2, // Stagger buttons
-            ease: "back.out(1.7)" 
-        }, "<0.2")
-        .from(".hero-social-links a", { 
-            opacity: 0, 
-            duration: 0.5, 
-            y: 20, 
-            stagger: 0.1 
-        }, "<0.1");
-
-    
-    // --- Animation 2: Section Title Parallax/Zoom (on scroll) ---
-    // Targets all h2 elements in page-sections.
-    gsap.utils.toArray(".page-section h2").forEach(title => {
-        gsap.from(title, {
-            y: 50,
-            opacity: 0,
-            scale: 0.95,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: title,
-                start: "top 85%", 
-                end: "bottom 20%",
-                scrub: 1, 
-                toggleActions: "play none none reverse",
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
             }
         });
+    }, {
+        threshold: 0.15 
     });
 
-    // --- Animation 3: About Section Staggered Card Entrance (on scroll) ---
-    gsap.from(".about-grid .about-card", {
-        y: 50,
-        opacity: 0,
-        stagger: 0.2, 
-        duration: 0.8,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#about",
-            start: "top 75%",
-            toggleActions: "play none none reverse",
-        }
+    animatedElements.forEach(el => {
+        observer.observe(el);
     });
 
-    // --- Animation 4: Skills Section Entrance (Category Split - on scroll) ---
-    gsap.from(".skill-category", {
-        x: (i) => i % 2 === 0 ? -100 : 100, // Split animation
-        opacity: 0,
-        stagger: 0.2,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: "#skills",
-            start: "top 75%",
-            toggleActions: "play none none reverse",
-        }
-    });
-    
-    // --- Animation 5: Projects Card Entrance (Slide and Fade - on scroll) ---
-    gsap.from(".project-card", {
-        y: 80,
-        opacity: 0,
-        stagger: 0.25,
-        duration: 0.8,
-        ease: "back.out(1.2)", 
-        scrollTrigger: {
-            trigger: "#projects .project-grid",
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-        }
-    });
-
-    // --- Bonus: Contact Form Entrance (on scroll) ---
-    gsap.from(".contact-container", {
-        y: 50,
-        opacity: 0,
-        duration: 1,
-        ease: "power2.out",
-        scrollTrigger: {
-            trigger: "#contact",
-            start: "top 75%",
-            toggleActions: "play none none reverse",
-        }
-    });
-
-    // ======================================================
     // ======== PART 4: CONTACT FORM SUBMISSION (Web3Forms Integration) ========
-    // ======================================================
     
     const form = document.getElementById("contact-form");
     const formStatus = document.getElementById("form-status");

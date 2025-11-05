@@ -11,7 +11,7 @@
 
 /* ======== CURSOR RESTORATION & GLOBAL RESET ======== */
 body {
-    cursor: default; /* Restores the normal mouse cursor */
+    cursor: default;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -127,51 +127,119 @@ a {
     font-size: 1.8rem;
     color: var(--text-color); 
     transition: color 0.3s ease;
-    width: 40px; /* Standardize the size of the link container */
-    height: 40px; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .social-icon:hover {
     color: var(--primary-color);
 }
 
-/* ======== VIDEO ICON STYLING ======== */
-
-.github-video-wrapper {
-    /* Define the size of the wrapper to match the social icon size */
-    width: 1.8rem; /* Matches the font-size of other social icons */
-    height: 1.8rem;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.social-video {
-    /* Make the video fill its wrapper */
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* Ensures the whole video is visible, scaling it down if needed */
-    opacity: 0; /* Initially hidden, controlled by JS on hover */
-    transition: opacity 0.3s ease;
-    
-    /* Ensure the video is positioned correctly inside its parent */
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-
-/* ======== ABOUT SECTION ======== */
+/* =================================== */
+/* ===== UPDATED ABOUT SECTION CSS ===== */
+/* =================================== */
 .section-subtitle { font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto 40px; }
 .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
-.about-card { background-color: white; padding: 30px; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; }
-.about-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; display: block; }
-.about-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
+
+/* 1. The container that sets up the 3D perspective */
+.flip-card-container {
+    perspective: 1000px; /* This creates the 3D effect */
+    min-height: 250px; /* Give the card a fixed height */
+    cursor: pointer;
+}
+
+/* 2. Modify the original .about-card to be the rotating element */
+.about-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    /* Remove original card styles (they move to the faces) */
+    background: none;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    /* Add 3D properties */
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d; /* Corrected from preserve-d */
+}
+
+/* 3. The "tap" (focus) or hover action that flips the card */
+.flip-card-container:hover .about-card,
+.flip-card-container:focus .about-card {
+    transform: rotateY(180deg);
+}
+
+/* 4. Style for BOTH faces (front and back) */
+.card-front,
+.card-back {
+    /* Use absolute positioning to stack them */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Hides the back of the element */
+    backface-visibility: hidden;
+
+    /* Re-apply the original .about-card styles here */
+    background-color: white;
+    padding: 30px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    text-align: center;
+    
+    /* Center content vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box; /* Ensures padding doesn't break layout */
+}
+
+/* 5. Style the front face (already facing forward) */
+.card-front {
+    color: var(--secondary-color);
+}
+.card-front i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    display: block;
+}
+.card-front h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+/* 6. Style the back face (start it flipped) */
+.card-back {
+    transform: rotateY(180deg);
+    background-color: var(--light-gray); /* Optional: different bg for back */
+    color: var(--secondary-color);
+}
+.card-back h3 {
+    font-size: 1.25rem;
+}
+.card-back p {
+    font-size: 1rem;
+    margin: 0; /* Remove default paragraph margin */
+}
+
+/* 7. Hint text for the user */
+.tap-hint {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 15px;
+    font-style: italic;
+}
+
+/* Hide the tap hint on desktop (where hover works) */
+@media (min-width: 769px) {
+    .tap-hint {
+        display: none;
+    }
+}
+/* =================================== */
+/* ===== END OF UPDATED SECTION ===== */
+/* =================================== */
+
 
 /* ======== SKILLS SECTION ======== */
 #skills { background-color: var(--light-gray); }
@@ -200,7 +268,7 @@ a {
 }
 
 .contact-info {
-    flex-basis: 35%; 
+    flex-basis: 35%;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -243,20 +311,20 @@ a {
 
 #contact-form input,
 #contact-form textarea {
-    background-color: var(--form-bg); 
+    background-color: var(--form-bg);
     border: none;
     padding: 15px;
     width: 100%;
     margin-bottom: 20px;
     border-radius: 4px;
     font-size: 1rem;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .form-submit-btn {
     width: 100%;
     justify-content: center;
-    background-color: var(--dark-button-bg); 
+    background-color: var(--dark-button-bg);
     color: white;
     border: none;
 }
@@ -268,58 +336,173 @@ a {
 /* ======== FOOTER ======== */
 footer { text-align: center; padding: 20px; background-color: var(--secondary-color); color: var(--light-gray); margin-top: 40px; }
 
-/* ======== INITIAL GSAP ANIMATION STATES ======== */
-/* Hide elements that GSAP will reveal */
-.hero-content h1, 
-.hero-content p, 
-.hero-cta-group,
-.hero-social-links {
-    opacity: 0;
+/* ======== WORD ROTATION ANIMATION ======== */
+#rotating-text .word:nth-child(1) { color: #000000; }
+#rotating-text .word:nth-child(2) { color: #81c48f; }
+#rotating-text .word:nth-child(3) { color: #b8a87a; }
+#rotating-text .word:nth-child(4) { color: #b9837e; }
+#rotating-text .word:nth-child(5) { color: #966ca8; }
+#rotating-text .word:nth-child(6) { color: #6c4e47; }
+#rotating-text .word:nth-child(7) { color: #8caac9; }
+
+.typing-container {
+    font-size: 2rem;
+    margin-bottom: 9px;
+    display: flex;
+    justify-content: center;
 }
 
-/* Set initial opacity and Y transform for scroll-triggered elements */
-.page-section h2, 
-.section-subtitle,
-.about-grid .about-card,
-.skill-category,
-.project-card,
-.contact-container {
-    opacity: 0;
-    transform: translateY(30px);
+.rotating-words-wrapper {
+    height: 1.1em; 
+    overflow: hidden;
+    display: inline-block;
+    padding-left: 0.5em; 
+    font-weight: bold;
+    transform: translateY(8px);
+}
+
+#rotating-text {
+    display: inline-block;
+    animation: word-slide 10s infinite; 
+}
+
+.word {
+    display: block;
+    line-height: 1.1em;
+    text-align: left;
+}
+
+@keyframes word-slide {
+    0% { transform: translateY(0); }
+    10% { transform: translateY(0); } /* Word 1 */
+    15% { transform: translateY(-1.1em); }
+    
+    25% { transform: translateY(-1.1em); } /* Word 2 */
+    30% { transform: translateY(-2.2em); }
+    
+    40% { transform: translateY(-2.2em); } /* Word 3 */
+    45% { transform: translateY(-3.3em); }
+    
+    55% { transform: translateY(-3.3em); } /* Word 4 */
+    60% { transform: translateY(-4.4em); }
+
+    70% { transform: translateY(-4.4em); } /* Word 5 */
+    75% { transform: translateY(-5.5em); }
+
+    85% { transform: translateY(-5.5em); } /* Word 6 */
+    90% { transform: translateY(-6.6em); }
+
+    95% { transform: translateY(-6.6em); } /* Word 7 */
+    100% { transform: translateY(0); }
 }
 
 
 /* ======== RESPONSIVE STYLES (MOBILE OPTIMIZATION) ======== */
 @media (max-width: 768px) {
-    /* Main contact layout stacks */
+
+    /* --- Layout Stacking --- */
     .contact-container {
         flex-direction: column;
         gap: 30px;
     }
 
-    /* Form wrapper uses full width */
     .contact-form-wrapper {
         flex-basis: 100%;
-        padding: 20px; 
+        padding: 20px;
     }
 
-    /* Info cards also use full width */
     .contact-info {
         flex-basis: 100%;
     }
 
-    /* Other Mobile Optimizations */
-    .hero-cta-group { flex-direction: column; gap: 15px; margin-bottom: 30px; }
-    .cta-button { width: 100%; max-width: 300px; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background-color: var(--background-color); width: 100%; text-align: center; transition: left 0.3s ease; box-shadow: 0 5px 10px rgba(0,0,0,0.1); z-index: 999; }
-    .nav-menu.active { left: 0; }
-    .nav-item { margin: 15px 0; }
-    .hamburger { display: block; }
-    .hero-content h1 { font-size: 2rem; }
-    .hero-content p { font-size: 1rem; }
-    .page-section h2 { font-size: 1.8rem; }
-    .page-section { padding: 40px 15px; }
-    .about-grid, .skills-grid { grid-template-columns: 1fr; gap: 20px; }
-    .project-card:hover { transform: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .hero-cta-group { 
+        flex-direction: column; 
+        gap: 15px; 
+        margin-bottom: 30px; 
+    }
+    
+    .cta-button { 
+        width: 100%; 
+        max-width: 300px; 
+    }
+    
+    .skills-grid { 
+        grid-template-columns: 1fr; 
+    }
+    
+    /* MODIFIED: Update about grid for 3D cards */
+    .about-grid { 
+        grid-template-columns: 1fr; 
+        gap: 20px; 
+    }
+
+    /* --- Mobile Navigation Menu --- */
+    .nav-menu { 
+        position: fixed; 
+        left: -100%; 
+        top: 70px; 
+        flex-direction: column; 
+        background-color: var(--background-color); 
+        width: 100%; 
+        text-align: center; 
+        transition: left 0.3s ease; 
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1); 
+        z-index: 999; 
+    }
+    
+    .nav-menu.active { 
+        left: 0; 
+    }
+    
+    .nav-item { 
+        margin: 0;
+    }
+    
+    .nav-menu .nav-link {
+        display: block;
+        padding: 15px 0;
+    }
+    
+    .hamburger { 
+        display: block; 
+    }
+
+    /* --- Font Size & Readability --- */
+    .hero-content h1 { 
+        font-size: 2rem;
+    }
+    
+    .typing-container {
+        font-size: 1.5rem;
+        flex-wrap: wrap; 
+    }
+    
+    .hero-content p { 
+        font-size: 1rem;
+    }
+    
+    .page-section h2 { 
+        font-size: 1.8rem;
+    }
+    
+    .page-section { 
+        padding: 40px 15px;
+    }
+
+    /* --- Disable Hover Effects on Touch --- */
+    .project-card:hover { 
+        transform: none; 
+        box-shadow: 0 4px 8px rgba(0,0,L0.1); 
+    }
+
+    /* --- Scroll Animation --- */
+    .animate-on-scroll { 
+        opacity: 0; 
+        transform: translateY(30px); 
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+    }
+    .animate-on-scroll.show { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
 }
