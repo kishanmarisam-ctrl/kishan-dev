@@ -11,7 +11,7 @@
 
 /* ======== CURSOR RESTORATION & GLOBAL RESET ======== */
 body {
-    cursor: default; /* Restores the normal mouse cursor */
+    cursor: default;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -20,8 +20,6 @@ body {
     line-height: 1.6;
     overflow-x: hidden; /* Prevent horizontal scrollbars */
 }
-
-/* Removed: All custom cursor styles */
 
 /* Smooth scrolling setup */
 html {
@@ -49,7 +47,7 @@ a {
     text-decoration: none;
 }
 
-/* ======== NAVBAR & MENU (unchanged) ======== */
+/* ======== NAVBAR & MENU ======== */
 .navbar { background-color: var(--background-color); border-bottom: 1px solid var(--light-gray); position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 .nav-container { max-width: 1100px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; height: 70px; }
 .nav-logo { font-size: 1.5rem; font-weight: bold; color: var(--secondary-color); }
@@ -135,14 +133,14 @@ a {
     color: var(--primary-color);
 }
 
-/* ======== ABOUT SECTION (unchanged) ======== */
+/* ======== ABOUT SECTION ======== */
 .section-subtitle { font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto 40px; }
 .about-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
 .about-card { background-color: white; padding: 30px; border: 1px solid #eee; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); text-align: center; }
 .about-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; display: block; }
 .about-card h3 { font-size: 1.25rem; margin-bottom: 10px; }
 
-/* ======== SKILLS SECTION (unchanged) ======== */
+/* ======== SKILLS SECTION ======== */
 #skills { background-color: var(--light-gray); }
 .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; text-align: center; margin-top: 50px; }
 .skill-category { text-align: center;}
@@ -150,7 +148,7 @@ a {
 .skills-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 15px;}
 .skill-pill { background-color: #e9ecef; color: #495057; padding: 8px 16px; border-radius: 20px; font-size: 0.9rem; font-weight: 500; }
 
-/* ======== PROJECTS SECTION (unchanged) ======== */
+/* ======== PROJECTS SECTION ======== */
 .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
 .project-card { background-color: var(--background-color); border: 1px solid #ddd; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-align: left; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .project-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
@@ -159,9 +157,7 @@ a {
 .project-card p { padding: 0 20px; }
 .project-card a { display: inline-block; padding: 0 20px 20px; font-weight: bold; }
 
-/* ======== CONTACT SECTION STYLES (NEW DESIGN) ======== */
-
-/* Main layout for desktop */
+/* ======== CONTACT SECTION STYLES ======== */
 .contact-container {
     display: flex;
     justify-content: space-between;
@@ -170,9 +166,8 @@ a {
     margin-top: 40px;
 }
 
-/* Left side (Info Cards) */
 .contact-info {
-    flex-basis: 35%; /* Takes about a third of the space */
+    flex-basis: 35%;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -188,7 +183,7 @@ a {
 
 .info-card i {
     font-size: 2.2rem;
-    color: var(--primary-color); /* Matches the design */
+    color: var(--primary-color);
     margin-bottom: 10px;
 }
 .info-card h4 {
@@ -205,9 +200,8 @@ a {
     color: #666;
 }
 
-/* Right side (Form Wrapper) */
 .contact-form-wrapper {
-    flex-basis: 65%; /* Takes about two-thirds of the space */
+    flex-basis: 65%;
     background-color: white;
     padding: 40px;
     border-radius: 8px;
@@ -216,20 +210,20 @@ a {
 
 #contact-form input,
 #contact-form textarea {
-    background-color: var(--form-bg); /* Light gray background for inputs */
+    background-color: var(--form-bg);
     border: none;
     padding: 15px;
     width: 100%;
     margin-bottom: 20px;
     border-radius: 4px;
     font-size: 1rem;
-    box-sizing: border-box; /* Include padding in the element's total width/height */
+    box-sizing: border-box;
 }
 
 .form-submit-btn {
     width: 100%;
     justify-content: center;
-    background-color: var(--dark-button-bg); /* Ensure button uses dark style */
+    background-color: var(--dark-button-bg);
     color: white;
     border: none;
 }
@@ -238,159 +232,189 @@ a {
     font-size: 1rem;
 }
 
-/* ======== FOOTER (unchanged) ======== */
+/* ======== FOOTER ======== */
 footer { text-align: center; padding: 20px; background-color: var(--secondary-color); color: var(--light-gray); margin-top: 40px; }
+
+/* ======== WORD ROTATION ANIMATION ======== */
+
+/* Text colors for each word */
+#rotating-text .word:nth-child(1) { color: #000000; }
+#rotating-text .word:nth-child(2) { color: #81c48f; }
+#rotating-text .word:nth-child(3) { color: #b8a87a; }
+#rotating-text .word:nth-child(4) { color: #b9837e; }
+#rotating-text .word:nth-child(5) { color: #966ca8; }
+#rotating-text .word:nth-child(6) { color: #6c4e47; }
+#rotating-text .word:nth-child(7) { color: #8caac9; }
+
+/* Container for "I'm a [word]" */
+.typing-container {
+    font-size: 2rem;
+    margin-bottom: 9px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Wrapper that creates the "window" for the sliding word */
+.rotating-words-wrapper {
+    height: 1.1em; 
+    overflow: hidden;
+    display: inline-block;
+    padding-left: 0.5em; 
+    font-weight: bold;
+    transform: translateY(8px);
+}
+
+/* The element that contains all words and slides up/down */
+#rotating-text {
+    display: inline-block;
+    animation: word-slide 10s infinite; 
+}
+
+.word {
+    display: block;
+    line-height: 1.1em;
+    text-align: left;
+}
+
+/* Keyframes for the 7-word slide */
+@keyframes word-slide {
+    0% { transform: translateY(0); }
+    10% { transform: translateY(0); } /* Word 1 */
+    15% { transform: translateY(-1.1em); }
+    
+    25% { transform: translateY(-1.1em); } /* Word 2 */
+    30% { transform: translateY(-2.2em); }
+    
+    40% { transform: translateY(-2.2em); } /* Word 3 */
+    45% { transform: translateY(-3.3em); }
+    
+    55% { transform: translateY(-3.3em); } /* Word 4 */
+    60% { transform: translateY(-4.4em); }
+
+    70% { transform: translateY(-4.4em); } /* Word 5 */
+    75% { transform: translateY(-5.5em); }
+
+    85% { transform: translateY(-5.5em); } /* Word 6 */
+    90% { transform: translateY(-6.6em); }
+
+    95% { transform: translateY(-6.6em); } /* Word 7 */
+    100% { transform: translateY(0); }
+}
+
 
 /* ======== RESPONSIVE STYLES (MOBILE OPTIMIZATION) ======== */
 @media (max-width: 768px) {
-    /* Main contact layout stacks */
+
+    /* --- Layout Stacking --- */
     .contact-container {
         flex-direction: column;
         gap: 30px;
     }
 
-    /* Form wrapper uses full width */
     .contact-form-wrapper {
         flex-basis: 100%;
-        padding: 20px; /* Reduced padding on mobile */
+        padding: 20px;
     }
 
-    /* Info cards also use full width */
     .contact-info {
         flex-basis: 100%;
     }
 
-    /* Other Mobile Optimizations (unchanged) */
-    .hero-cta-group { flex-direction: column; gap: 15px; margin-bottom: 30px; }
-    .cta-button { width: 100%; max-width: 300px; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .nav-menu { position: fixed; left: -100%; top: 70px; flex-direction: column; background-color: var(--background-color); width: 100%; text-align: center; transition: left 0.3s ease; box-shadow: 0 5px 10px rgba(0,0,0,0.1); z-index: 999; }
-    .nav-menu.active { left: 0; }
-    .nav-item { margin: 15px 0; }
-    .hamburger { display: block; }
-    .hero-content h1 { font-size: 2rem; }
-    .hero-content p { font-size: 1rem; }
-    .page-section h2 { font-size: 1.8rem; }
-    .page-section { padding: 40px 15px; }
-    .about-grid, .skills-grid { grid-template-columns: 1fr; gap: 20px; }
-    .project-card:hover { transform: none; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
-    .animate-on-scroll.show { opacity: 1; transform: translateY(0); }
-
-
-}
-h2 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-.span {
-    content: web developer;
-    animation: 6s typing infinite;
-}
-
-#rotating-text .word:nth-child(1) {
-    color: #000000; /* Word 1: Blue */
-}
-#rotating-text .word:nth-child(2) {
-    color: #81c48f; /* Word 2: Green */
-}
-#rotating-text .word:nth-child(3) {
-    color: #b8a87a; /* Word 3: Yellow/Gold */
-}
-#rotating-text .word:nth-child(4) {
-    color: #b9837e; /* Word 4: Red */
-}
-#rotating-text .word:nth-child(5) {
-    color: #966ca8; /* Word 5: Purple */
-}
-#rotating-text .word:nth-child(6) {
-    color: #6c4e47; /* Word 6: Orange */
-}
-#rotating-text .word:nth-child(7) {
-    color: #8caac9; /* Word 7: Blue */
-}
-
-@keyframes typing {
-
-    0% { content: "Web Developer"; }
-    14.2% { content: "Designer"; }
-    28.4% { content: "Freelancer"; }
-    42.6% { content: "Responsive Web Developer"; }
-    56.8% { content: "Content Creator"; }
-    71% { content: "Tech enthusiast"; }
-    85.2% { content: "Tech reporter"; }
-    100% { content: "Web Developer"; }
-}
-/* --- Text Rotation Animation Styles (Pure CSS) --- */
-
-/* 1. Styling the container */
-.typing-container {
-    font-size: 2rem;
-    margin-bottom: 9px;
-    display: flex;
-    justify-content: center; /* Center the entire phrase: "I'm a [Rotating Text]" */
-}
-
-/* 2. Wrapper: Creates a "window" to show only one word at a time */
-.rotating-words-wrapper {
-    /* Set fixed height for one word */
-    height: 1.1em; 
-    overflow: hidden; /* Hides words that are above or below the view */
-    display: inline-block;
-    padding-left: 0.5em; 
-    color: var(--primary-color); /* Highlight the rotating words */
-    font-weight: bold;
-    transform: translateY(8px);
-}
-
-/* 3. Rotating Text: The block that moves up and down */
-#rotating-text {
-    display: inline-block;
-    /* Calculate animation duration: 
-       4 words * (4s wait time + 0.25s slide time) = 17s 
-    */
-    animation: word-slide 10s infinite; 
-}
-
-/* 4. Individual Words */
-.word {
-    display: block; /* Stack words vertically */
-    line-height: 1.1em; /* Matches the height of the wrapper */
-    text-align: left;
-   
-}
-
-
-/* --- Keyframe Definition: Moves the entire #rotating-text block up --- */
-
-@keyframes word-slide {
-    /* 4 words, 4 keyframe stops (0%, 25%, 50%, 75%) plus 100% reset */
-
-    /* Word 1: Web Developer */
-    0% { transform: translateY(0); }
-    10% { transform: translateY(0); } /* Display for 20% of the time */
-    15% { transform: translateY(-1.1em); } /* Slide up to show next word (1 line height) */
+    .hero-cta-group { 
+        flex-direction: column; 
+        gap: 15px; 
+        margin-bottom: 30px; 
+    }
     
-    /* Word 2: Designer */
-    25% { transform: translateY(-1.1em); } /* Display for 20% of the time */
-    30% { transform: translateY(-2.2em); } /* Slide up to show next word (2 line heights) */
+    .cta-button { 
+        width: 100%; 
+        max-width: 300px; 
+    }
     
-    /* Word 3: Freelancer */
-    40% { transform: translateY(-2.2em); } /* Display for 20% of the time */
-    45% { transform: translateY(-3.3em); } /* Slide up to show next word (3 line heights) */
+    .skills-grid { 
+        grid-template-columns: 1fr; 
+    }
     
-    /* Word 4: Content Creator */
-    55% { transform: translateY(-3.3em); } /* Display for 20% of the time */
-    60% { transform: translateY(-4.4em); } /* Reset to start */
+    .about-grid { 
+        grid-template-columns: 1fr; 
+        gap: 20px; 
+    }
 
-    /*word 5: tech enthusiast */
-    70% { transform: translateY(-4.4em); } /* Display for 20% of the time */
-    75% { transform: translateY(-5.5em); }
+    /* --- Mobile Navigation Menu --- */
+    .nav-menu { 
+        position: fixed; 
+        left: -100%; 
+        top: 70px; 
+        flex-direction: column; 
+        background-color: var(--background-color); 
+        width: 100%; 
+        text-align: center; 
+        transition: left 0.3s ease; 
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1); 
+        z-index: 999; 
+    }
+    
+    .nav-menu.active { 
+        left: 0; 
+    }
+    
+    .nav-item { 
+        margin: 0; /* Remove horizontal margin */
+    }
+    
+    /* OPTIMIZED: Increased tap area for mobile menu links */
+    .nav-menu .nav-link {
+        display: block;
+        padding: 15px 0; /* Creates a large, easy-to-tap vertical area */
+    }
+    
+    .hamburger { 
+        display: block; 
+    }
 
-    /*word 6: Designer */
-    85% { transform: translateY(-5.5em); } /* Display for 20% of the time */
-    90% { transform: translateY(-6.6em); }
+    /* --- Font Size & Readability --- */
+    .hero-content h1 { 
+        font-size: 2rem; /* Reduced from 3rem */
+    }
+    
+    /* OPTIMIZED: Reduced font size for rotating text container */
+    .typing-container {
+        font-size: 1.5rem; /* Reduced from 2rem */
+        /* Flex-wrap ensures "I'm a" and the word can stack if needed */
+        flex-wrap: wrap; 
+    }
+    
+    .hero-content p { 
+        font-size: 1rem; /* Reduced from 1.2rem */
+    }
+    
+    .page-section h2 { 
+        font-size: 1.8rem; /* Reduced from default */
+    }
+    
+    .page-section { 
+        padding: 40px 15px; /* Reduced padding */
+    }
 
-    /*word 7: web developer */
-    95% { transform: translateY(-6.6em); }
-    100% { transform: translateY(0); }}
+    /* --- Disable Hover Effects on Touch --- */
+    .project-card:hover { 
+        transform: none; 
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    }
+
+    /* --- Scroll Animation (No change needed) --- */
+    .animate-on-scroll { 
+        opacity: 0; 
+        transform: translateY(30px); 
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out; 
+    }
+    .animate-on-scroll.show { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* REMOVED: Deleted the conflicting/broken code that was here.
+   The old "h2", ".span", and "@keyframes typing" rules were
+   overriding the mobile styles in your @media query.
+*/
