@@ -79,5 +79,16 @@ document.addEventListener("DOMContentLoaded", () => {
             formStatus.style.color = "red";
         }
     });
+// ===== Clean Typewriter Restart on Page Load =====
+window.addEventListener('load', () => {
+  const text = document.querySelector('.typewriter-text');
+  if (text) {
+    // restart animation smoothly
+    text.style.animation = 'none';
+    text.offsetHeight; // reflow trigger
+    text.style.animation = null;
+  }
+});
+
 
 });

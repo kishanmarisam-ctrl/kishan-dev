@@ -505,4 +505,41 @@ footer { text-align: center; padding: 20px; background-color: var(--secondary-co
         opacity: 1; 
         transform: translateY(0); 
     }
+} /* 👈 This closes the @media query properly */
+
+/* ======== TYPEWRITER EFFECT - CLEAN SYNCED VERSION ======== */
+.typewriter-text {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--secondary-color);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid var(--primary-color);
+  letter-spacing: 1px;
+  width: 0;
+  animation: typing 3s steps(21, end) forwards, blink 0.8s step-end infinite;
 }
+
+/* Smooth typing animation */
+@keyframes typing {
+  0% { width: 0; }
+  100% { width: 100%; }
+}
+
+/* Clean blinking cursor */
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: var(--primary-color); }
+}
+
+/* Mobile font adjustment */
+@media (max-width: 768px) {
+  .typewriter-text {
+    font-size: 2rem;
+    animation: typing 4s steps(22, end) forwards
+  }
+}
+
+
+
