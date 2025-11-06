@@ -507,7 +507,7 @@ footer { text-align: center; padding: 20px; background-color: var(--secondary-co
     }
 } /* 👈 This closes the @media query properly */
 
-/* ======== TYPEWRITER EFFECT - CLEAN SYNCED VERSION ======== */
+/* ======== TYPEWRITER EFFECT ======== */
 .typewriter-text {
   display: inline-block;
   font-size: 3rem;
