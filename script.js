@@ -27,6 +27,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // ... (your existing hamburger and navLinks code) ...
+
+    // ======== NEW: CLOSE MENU ON CLICKING OUTSIDE ========
+    document.addEventListener("click", (e) => {
+        // Check if the menu is active AND
+        // if the click was NOT on the hamburger OR inside the nav menu
+        if (
+            navMenu.classList.contains("active") &&
+            !hamburger.contains(e.target) &&
+            !navMenu.contains(e.target)
+        ) {
+            // If all true, close the menu
+            navMenu.classList.remove("active");
+            const icon = hamburger.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
     // ======== PART 3: SCROLL ANIMATIONS (Intersection Observer) ========
 
     const animatedElements = document.querySelectorAll(".animate-on-scroll");
