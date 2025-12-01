@@ -1146,3 +1146,114 @@ footer {
         transform: scale(0.95);
     }
 }
+/* ========================================= */
+/* ===== PROJECTS SECTION PREMIUM ANIMATIONS ===== */
+/* ========================================= */
+
+/* --- A) Scroll Reveal Setup --- */
+/* Ensure card is ready for reveal animation */
+.project-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out, box-shadow 0.3s ease;
+    /* Ensure relative positioning for overlay */
+    position: relative;
+    /* Ensure overflow hidden for image zoom */
+    overflow: hidden;
+    will-change: opacity, transform;
+}
+
+/* The visible state added by JS */
+.project-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- B) Desktop Hover & C) Mobile Active Effects --- */
+
+/* 1. Gradient Overlay */
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 1;
+    pointer-events: none; /* Let clicks pass through */
+}
+
+.project-card:hover::before,
+.project-card.active-card::before {
+    opacity: 1;
+}
+
+/* 2. Card Scale & Lift */
+.project-card:hover,
+.project-card.active-card {
+    transform: scale(1.04) translateY(-5px); /* Combine scale with existing lift if needed, or just scale */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    z-index: 2; /* Bring to front */
+}
+
+/* 3. Image Zoom */
+.project-card img {
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 100%; /* Ensure width is stable */
+    display: block;
+}
+
+.project-card:hover img,
+.project-card.active-card img {
+    transform: scale(1.06);
+}
+
+/* 4. CTA Button Micro-animations */
+/* Target buttons inside the card */
+.project-card .project-links {
+    position: relative;
+    z-index: 3; /* Above overlay */
+}
+
+.project-card .project-btn {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.3s ease, 
+                background-color 0.3s ease, 
+                color 0.3s ease;
+}
+
+.project-card:hover .project-btn,
+.project-card.active-card .project-btn {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* Desktop Hover specific for buttons */
+@media (min-width: 769px) {
+    .project-card .project-btn:hover {
+        transform: scale(1.05) translateY(-3px);
+    }
+}
+
+/* Mobile Tap specific for buttons */
+@media (max-width: 768px) {
+    .project-card .project-btn:active {
+        transform: scale(0.95);
+    }
+}
+
+/* --- Mobile Specific Adjustments --- */
+@media (max-width: 768px) {
+    .project-card {
+        /* Reset any conflicting hover transforms from previous CSS if necessary, 
+           but the new classes should take precedence due to specificity or order */
+    }
+    
+    /* Ensure active state looks good on mobile */
+    .project-card.active-card {
+        transform: scale(1.02); /* Slightly less scale on mobile */
+    }
+}

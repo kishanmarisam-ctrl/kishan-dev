@@ -235,3 +235,83 @@ document.addEventListener("DOMContentLoaded", () => {
     // We'll rely on the CSS :active styles added in style.css for performance.
 
 });
+
+/* ========================================= */
+/* ===== PROJECTS SECTION ANIMATIONS JS ==== */
+/* ========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- A) Scroll Reveal with Stagger ---
+    const projectCards = document.querySelectorAll(".project-card");
+    
+    if (projectCards.length > 0) {
+        const projectObserverOptions = {
+            threshold: 0.15, // Trigger when 15% visible
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const projectObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const card = entry.target;
+                    
+                    // Calculate delay based on index relative to the grid
+                    // We can find the index in the NodeList
+                    const index = Array.from(projectCards).indexOf(card);
+                    const delay = index * 120; // 120ms stagger
+                    
+                    // Apply delay dynamically
+                    card.style.transitionDelay = `${delay}ms`;
+                    
+                    // Add visible class
+                    card.classList.add("is-visible");
+                    
+                    // Stop observing
+                    projectObserver.unobserve(card);
+                }
+            });
+        }, projectObserverOptions);
+
+        projectCards.forEach(card => {
+            projectObserver.observe(card);
+        });
+    }
+
+    // --- C) Mobile Tap Effects ---
+    // Handle tap to toggle active state
+    
+    projectCards.forEach(card => {
+        card.addEventListener("click", (e) => {
+            // Check if we are on a touch device or small screen (optional, but good for hybrid)
+            // Or just apply logic generally as requested
+            
+            // If clicking a button/link inside, let it function normally
+            if (e.target.closest("a") || e.target.closest("button")) {
+                return;
+            }
+
+            // Toggle active state
+            const isActive = card.classList.contains("active-card");
+            
+            // Remove active class from ALL other cards
+            projectCards.forEach(c => c.classList.remove("active-card"));
+            
+            if (!isActive) {
+                // If it wasn't active, make it active
+                card.classList.add("active-card");
+            } else {
+                // If it was active, we just removed it above, so it toggles off
+                // (Requirement: "Second tap ... remove .active-card")
+            }
+        });
+    });
+
+    // Close active cards when clicking outside
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".project-card")) {
+            projectCards.forEach(c => c.classList.remove("active-card"));
+        }
+    });
+
+});
