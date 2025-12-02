@@ -315,3 +315,78 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+/* ========================================= */
+/* ===== FLIP CARD INTERACTION FIX ========= */
+/* ========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const flipContainers = document.querySelectorAll('.flip-card-container');
+
+    flipContainers.forEach(container => {
+        container.addEventListener('click', () => {
+            container.classList.toggle('is-flipped');
+        });
+        
+        // Optional: Allow keyboard Enter/Space to flip
+        container.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                container.classList.toggle('is-flipped');
+            }
+        });
+    });
+});
+
+/* ========================================= */
+/* ===== ROBUST FLIP CARD JS v2 ============ */
+/* ========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll('.flip-card-container');
+    
+    cards.forEach(card => {
+        // Clone the card to remove all existing event listeners (prevent double toggle)
+        const newCard = card.cloneNode(true);
+        card.parentNode.replaceChild(newCard, card);
+        
+        // Re-attach the click listener to the clean element
+        newCard.addEventListener('click', () => {
+            newCard.classList.toggle('is-flipped');
+        });
+        
+        // Optional: Keyboard support
+        newCard.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                newCard.classList.toggle('is-flipped');
+            }
+        });
+    });
+});
+
+/* ========================================= */
+/* ===== RESTORED ABOUT FLIP CARDS JS ====== */
+/* ========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+    const serviceCards = document.querySelectorAll('.service-card');
+    
+    serviceCards.forEach(card => {
+        const inner = card.querySelector('.service-card-inner');
+        if (!inner) return;
+
+        card.addEventListener('click', () => {
+            card.classList.toggle('is-flipped');
+        });
+        
+        // Keyboard accessibility
+        card.setAttribute('tabindex', '0');
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                card.classList.toggle('is-flipped');
+            }
+        });
+    });
+});

@@ -1146,6 +1146,7 @@ footer {
         transform: scale(0.95);
     }
 }
+
 /* ========================================= */
 /* ===== PROJECTS SECTION PREMIUM ANIMATIONS ===== */
 /* ========================================= */
@@ -1179,11 +1180,12 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 60%, transparent 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.1) 60%, transparent 100%);
     opacity: 0;
     transition: opacity 0.4s ease;
     z-index: 1;
-    pointer-events: none; /* Let clicks pass through */
+    pointer-events: none;
+    /* Let clicks pass through */
 }
 
 .project-card:hover::before,
@@ -1194,15 +1196,18 @@ footer {
 /* 2. Card Scale & Lift */
 .project-card:hover,
 .project-card.active-card {
-    transform: scale(1.04) translateY(-5px); /* Combine scale with existing lift if needed, or just scale */
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    z-index: 2; /* Bring to front */
+    transform: scale(1.04) translateY(-5px);
+    /* Combine scale with existing lift if needed, or just scale */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    /* Bring to front */
 }
 
 /* 3. Image Zoom */
 .project-card img {
     transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    width: 100%; /* Ensure width is stable */
+    width: 100%;
+    /* Ensure width is stable */
     display: block;
 }
 
@@ -1215,20 +1220,21 @@ footer {
 /* Target buttons inside the card */
 .project-card .project-links {
     position: relative;
-    z-index: 3; /* Above overlay */
+    z-index: 3;
+    /* Above overlay */
 }
 
 .project-card .project-btn {
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
-                box-shadow 0.3s ease, 
-                background-color 0.3s ease, 
-                color 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.3s ease,
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 .project-card:hover .project-btn,
 .project-card.active-card .project-btn {
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Desktop Hover specific for buttons */
@@ -1251,9 +1257,260 @@ footer {
         /* Reset any conflicting hover transforms from previous CSS if necessary, 
            but the new classes should take precedence due to specificity or order */
     }
-    
+
     /* Ensure active state looks good on mobile */
     .project-card.active-card {
-        transform: scale(1.02); /* Slightly less scale on mobile */
+        transform: scale(1.02);
+        /* Slightly less scale on mobile */
     }
+}
+
+/* ========================================= */
+/* ===== NEW PROJECT ANIMATIONS (APPENDED) ===== */
+/* ========================================= */
+
+/* Initial hidden state */
+.project-card {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+    will-change: opacity, transform;
+}
+
+/* Visible state */
+.project-card.project-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Desktop Hover Effects */
+@media (min-width: 769px) {
+    .project-card:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        z-index: 10;
+    }
+
+    .project-card:hover img {
+        transform: scale(1.05);
+        transition: transform 0.5s ease;
+    }
+}
+/* ========================================= */
+/* ===== FLIP CARD FIX (MOBILE/DESKTOP) ===== */
+/* ========================================= */
+
+/* 1. Outer Container Perspective */
+.flip-card-container {
+    perspective: 1000px;
+}
+
+/* 2. Inner Wrapper 3D Settings */
+.about-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+}
+
+/* 3. Faces Common Styles */
+.card-front,
+.card-back {
+    position: absolute;
+    inset: 0; /* Ensures full coverage */
+    -webkit-backface-visibility: hidden; /* Safari fix */
+    backface-visibility: hidden;
+    /* Ensure backgrounds are opaque to prevent bleed-through */
+    background-color: white; 
+}
+
+/* 4. Front Face (No Rotation) */
+.card-front {
+    transform: rotateY(0deg) !important;
+    z-index: 2;
+}
+
+/* 5. Back Face (Pre-rotated) */
+.card-back {
+    transform: rotateY(180deg) !important;
+    z-index: 1;
+    background-color: var(--light-gray); /* Restore original bg color */
+}
+
+/* 6. Flip State (Class-based) */
+.flip-card-container.is-flipped .about-card {
+    transform: rotateY(180deg);
+}
+
+/* ========================================= */
+/* ===== ROBUST FLIP CARD FIX v2 (MOBILE MIRROR FIX) ===== */
+/* ========================================= */
+
+/* A) Outer Container */
+.flip-card-container {
+  perspective: 1800px !important;
+  -webkit-perspective: 1800px !important;
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+}
+
+/* B) Inner Wrapper */
+.about-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s ease;
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+}
+
+/* C) Faces */
+.card-front,
+.card-back {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+}
+
+.card-front {
+  transform: rotateY(0deg) !important;
+  z-index: 2;
+}
+
+.card-back {
+  transform: rotateY(180deg) !important;
+  z-index: 1;
+}
+
+/* D) Enable Flip */
+.flip-card-container.is-flipped .about-card {
+  transform: rotateY(180deg) !important;
+}
+
+/* E) Fix Nested Elements (Safari Mirror Fix) */
+.flip-card-container *,
+.flip-card-container *::before,
+.flip-card-container *::after {
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+}
+
+/* F) Prevent Parent Flattening */
+.page-section,
+.about-grid {
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+}
+
+/* ========================================= */
+/* ===== RESTORED ABOUT FLIP CARDS (FIXED) ===== */
+/* ========================================= */
+
+/* Grid Layout */
+.services-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    /* Default to 1 column on mobile */
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Card Container */
+.service-card {
+    background: transparent; /* Inner has bg */
+    border-radius: 16px;
+    /* box-shadow handled by inner faces or wrapper if needed, 
+       but let's put it on the faces or inner to avoid flat look */
+    position: relative;
+    perspective: 1600px;
+    -webkit-perspective: 1600px;
+    height: 220px; /* Fixed height for consistency */
+    cursor: pointer;
+}
+
+/* Inner Wrapper */
+.service-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    border-radius: 16px;
+}
+
+/* Faces */
+.service-card-front,
+.service-card-back {
+    position: absolute;
+    inset: 0;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 16px;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.service-card-front {
+    transform: rotateY(0deg);
+    z-index: 2;
+}
+
+.service-card-back {
+    transform: rotateY(180deg);
+    background: #f8f9fa; /* Slightly different bg for back */
+    z-index: 1;
+}
+
+/* Icon & Text Styling */
+.service-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color, #007bff);
+    margin-bottom: 1rem;
+}
+
+.service-card h3 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.service-hint {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 0.5rem;
+    opacity: 0.7;
+}
+
+/* Flip State */
+.service-card.is-flipped .service-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Mobile Mirror Fix (Global for this component) */
+.service-card *,
+.service-card *::before,
+.service-card *::after {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
